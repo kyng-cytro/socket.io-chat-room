@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Socket IO</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <main
+      class="font-mono flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white"
+    >
+      <div
+        class="w-full h-[60vh] border rounded-lg p-3 flex flex-col max-w-3xl"
+      >
+        <!-- Header -->
+        <div class="border-b w-full flex justify-center pb-2">
+          <h1 class="text-3xl">Live Chat Room</h1>
+        </div>
+        <!-- Chats -->
+        <div
+          id="chat-layout"
+          class="flex-1 py-2 flex flex-col gap-3 overflow-y-scroll hide-scroll-bar"
+        ></div>
+        <!-- Input --->
+        <div
+          class="border-t w-full flex justify-between items-center pt-2 flex"
+        >
+          <textarea
+            id="message"
+            rows="1"
+            class="block mr-2 p-2 w-full text-sm bg-slate-800 rounded-lg border border-gray-300 hide-scroll-bar"
+            placeholder="Say Something..."
+          ></textarea>
+          <button
+            id="submit"
+            type="submit"
+            class="inline-flex justify-center p-2 text-blue-600 rounded-lg cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600"
+          >
+            <svg
+              class="w-5 h-5 rotate-90"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 18 20"
+            >
+              <path
+                d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"
+              />
+            </svg>
+            <span class="sr-only">Send message</span>
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="js/index.js"></script>
+  </body>
+</html>
