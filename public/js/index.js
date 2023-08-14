@@ -6,7 +6,11 @@ const addNotifications = (action, user_id) => {
 </div>
 `;
 
-  document.getElementById("chat-layout").innerHTML += messageMarkup;
+  const chatLayout = document.getElementById("chat-layout");
+
+  chatLayout.innerHTML += messageMarkup;
+
+  chatLayout.scrollTop = chatLayout.scrollHeight;
 };
 
 const addMessage = (message, user_id) => {
@@ -45,11 +49,15 @@ const addMessage = (message, user_id) => {
       </div>
     `;
   }
-  document.getElementById("chat-layout").innerHTML += messageMarkup;
+  const chatLayout = document.getElementById("chat-layout");
+
+  chatLayout.innerHTML += messageMarkup;
+
+  chatLayout.scrollTop = chatLayout.scrollHeight;
 };
 
 document.querySelector("#message").addEventListener("keypress", (e) => {
-  if (e.keyCode === 13 && !e.shiftKey) {
+  if (e.keyCode === 13 && e.shiftKey) {
     // Prevent New Line
     e.preventDefault();
 
@@ -64,6 +72,22 @@ document.querySelector("#message").addEventListener("keypress", (e) => {
 
     // Reset Input
     document.querySelector("#message").value = "";
+  }
+});
+
+socket.on("userCount", (userCount) => {
+  count = userCount - 1;
+
+  if (count < 1) {
+    document.querySelector("#count").innerText = "No Other Active User(s)";
+    document.querySelector("#dot").classList.add("bg-slate-600");
+    document.querySelector("#dot").classList.remove("bg-green-600");
+  } else {
+    document.querySelector(
+      "#count"
+    ).innerText = `${count} Other Active User(s)`;
+    document.querySelector("#dot").classList.remove("bg-slate-600");
+    document.querySelector("#dot").classList.add("bg-green-600");
   }
 });
 

@@ -13,16 +13,27 @@
       class="font-mono flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white"
     >
       <div
-        class="w-full h-[60vh] border rounded-lg p-3 flex flex-col max-w-3xl"
+        class="w-full h-[90vh] border rounded-lg p-3 flex flex-col max-w-2xl"
       >
         <!-- Header -->
-        <div class="border-b w-full flex justify-center pb-2">
+        <div
+          class="border-b w-full flex flex-col items-center justify-center gap-2 pb-2"
+        >
           <h1 class="text-3xl">Live Chat Room</h1>
+          <div class="flex gap-2 items-center">
+            <div
+              id="dot"
+              class="bg-slate-600 rounded-full h-3 w-3 inline-flex"
+            ></div>
+            <div class="inline-flex">
+              <span id="count" class="text-sm">No active users</span>
+            </div>
+          </div>
         </div>
         <!-- Chats -->
         <div
           id="chat-layout"
-          class="flex-1 py-2 flex flex-col gap-3 overflow-y-scroll hide-scroll-bar"
+          class="flex-1 py-3 flex flex-col gap-3 overflow-y-scroll hide-scroll-bar"
         ></div>
         <!-- Input --->
         <div

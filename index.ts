@@ -10,14 +10,17 @@ const httpServer = createServer(app);
 const io = new Server(httpServer, {});
 const port = process.env.PORT;
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
+  const users = await io.fetchSockets();
   io.emit("joined", socket.id);
-
+  io.emit("userCount", users.length);
   socket.on("message", (message) => {
     io.emit("message", { id: socket.id, text: message, time: new Date() });
   });
 
-  socket.on("disconnect", () => {
+  socket.on("disconnect", async () => {
+    const users = await io.fetchSockets();
+    io.emit("userCount", users.length);
     io.emit("left", socket.id);
   });
 });
